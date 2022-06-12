@@ -62,7 +62,7 @@ async function crawlAllJavStar(firstChar) {
 }
 
 async function findActress(searchText) {
-    crawlAllJavStar('');
+    await crawlAllJavStar('');
     return nameList.filter((actress, index) => (actress.name).toLowerCase().includes((searchText.toLowerCase())));
 }
 

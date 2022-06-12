@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jav Star</title>
+    <link rel="stylesheet" href="/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <%- include ('tiles/navbar') %>
+        <%- include ('tiles/header') %>
+
+            <!-- Content Pages -->
+            <div class="w3-container w3-margin-bottom w3-animate-bottom w3-grey" style="margin-top: 105px;" >
+                <h2 id="topAcctress" class="w3-leftbar w3-border-blue w3-padding">Jav Idol</h2>
+                <div class="w3-center">
+                    <!-- Row -->
+                    <div class="w3-row">
+                        <!-- Colmn -->
+                        <% for(let i=0;i<result.length;i++){%>
+                            <div class="w3-card-4 w3-center w3-col" style="width:20%; margin: 0 30px 16px;">
+                                <img src="<%= result[i].image %>" alt="" width="290px" height="400px">
+                                <!-- <button style="width: 100%;" class="w3-button w3-hover-red"><%= result[i].name %> <i
+                                        class="fa fa-arrow-right"></i></button> -->
+                                <a href="<%= result[i].url %>" style="width: 100%;" class="w3-button w3-hover-red"><%= result[i].name %> <i
+                                    class="fa fa-arrow-right"></i></a>
+                            </div>
+                            <% } %>
+                    </div>
+
+                    <div class="w3-center w3-margin-bottom">
+                        <a href="/JavStar/Actress" class="w3-button w3-khaki w3-card">See More...</a>
+                    </div>
+            
+                </div>
+            </div>
+
+            <%- include ('tiles/footer') %>
+</body>
+
+</html>

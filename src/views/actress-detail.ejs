@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jav Star</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/w3.css">
+</head>
+
+<body>
+    <%- include ('tiles/navbar') %>
+
+        <!-- Content Pages -->
+        <div class="w3-container" style="margin: 155px 150px 200px">
+            <div class="w3-row">
+                <!-- Image field -->
+                <div class="w3-col m8 w3-container w3-center" style="max-height: 900px;">
+                    <h3 class="w3-leftbar w3-padding w3-border-blue w3-left" style="margin-bottom:10px;"><%= titleName %> </h3>
+                    <div class="w3-center">
+                        <img src="<%= image %>" alt="" class="w3-image w3-card" width="100%" height="600px" style="max-height: 550px; max-width: 450px;">
+                    </div>
+                </div>
+    
+                <!-- Info field -->
+                <div class="w3-col m4">
+                    <div>
+                        <ul class="w3-ul w3-border">
+                            <li class="w3-blue"><h2>Personal Information</h2></li>
+                            <% for(let i=0;i< Object.keys(actress.Personal_Information).length;i++){ %>
+                                <li style="flex-basis: 90px;">
+                                    <b><%= Object.keys(actress.Personal_Information)[i] %></b>
+                                    <span  style="position: relative;margin-left: 20px;"><%= Object.values(actress.Personal_Information)[i] %></span>
+                                </li>
+                            <% } %>   
+                        </ul>
+                        <ul class="w3-ul w3-border">
+                            <li class="w3-blue"><h2>Professional Information</h2></li>
+                            <li>
+                                <b><%= Object.keys(actress.Professional_Information)[0] %></b>
+                                <span style="margin-left: 20px;"><%= Object.values(actress.Professional_Information)[0] %> </span>
+                            </li>   
+                        </ul>
+                        <ul class="w3-ul w3-border">
+                            <li class="w3-blue"><h2>Social Media</h2></li>
+                            <% for(let i=0;i< Object.keys(actress.Social_Media).length;i++){ %>
+                                <li>
+                                    <b><%= Object.keys(actress.Social_Media)[i] %></b>
+                                    <span style="margin-left: 20px;">
+                                        <a target="_blank" href="<%= Object.values(actress.Social_Media)[i] %> "><%= titleName%> </a>
+                                    </span>
+                                </li>
+                            <% } %>  
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <%- include ('tiles/footer') %>
+</body>
+
+</html>

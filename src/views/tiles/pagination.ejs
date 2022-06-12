@@ -1,0 +1,35 @@
+<div class="w3-bar w3-center w3-margin-bottom">
+    <!-- if have actress -->
+    <% if(pages> 0) {%>
+        <!-- Fisrt Button -->
+        <% if(current==1){ %>
+            <a href="#" class="w3-button w3-disabled">&laquo;</a>
+        <%}else{%>
+            <a href="#" class="w3-button">&laquo;</a>
+        <% } %>
+        
+        <% let link = char == '' ? `/JavStar/Actress?page=` : `/JavStar/Actress?char=${char}&page=` %> 
+        <% let i= Number(current) > 3 ? Number(current) - 2 : 1 %> 
+        <% if(i != 1) {%>
+            <a href="#" class="w3-button w3-disabled">...</a>
+        <% } %>  
+        <% for(;i<=Number(current) + 2 && i <= pages;i++){ %> 
+            <% if(i == current) {%> 
+                <a href="<%= link %><%= i %>" class="w3-button w3-red"><%= current %> </a>
+            <% }else{ %> 
+                <a href="<%= link %><%= i %>" class="w3-button"><%= i %> </a>        
+            <% } %> 
+
+            <% if((i == Number(current) + 2) && i < pages){ %> 
+                <a href="#" class="w3-button w3-disabled">...</a>
+            <% } %> 
+        <% } %> 
+
+        <!-- Last Button -->
+        <% if(current==pages){ %>
+            <a href="#" class="w3-button w3-disabled">&raquo;</a>
+        <%}else{%>
+            <a href="#" class="w3-button">&raquo;</a>
+        <% } %>
+    <% } %>
+</div>

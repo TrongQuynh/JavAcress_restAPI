@@ -4,7 +4,7 @@ const router = require('./routers/index')
 const path = require('path');
 const app = express();
 
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');

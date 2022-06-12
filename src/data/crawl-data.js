@@ -30,7 +30,7 @@ let crawlAllData = async function (firstChar) {
                     id: ID,
                     firstChar: firstChar,
                     name: name,
-                    url: `http://localhost:8000/JavStar/Actress/Detail${url.split('/wiki')[1]}`,
+                    url: `JavStar/Actress/Detail${url.split('/wiki')[1]}`,
                     image: image
                 });
                 

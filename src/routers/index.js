@@ -18,6 +18,36 @@ function Router(app) {
         });
     })
 
+    // [GET] /JavStar/Actress/Search?query&?page
+    app.get("/JavStar/Actress/Search", async(req, res) => {
+        let query = req.query.query;
+        let data = []
+        if(!query){
+            return;
+        }
+        data = await crawlData.findActress(query);
+        
+        let page = req.query.page || 1;
+        let perPage = 12;
+        let skip = ((page - 1) * perPage);
+        let numberOfActress = data.length;
+        let totalPages = Math.ceil(data.length / perPage); // total page
+        let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
+            "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+        // skip actress
+        data = data.filter((actress, index) => index >= skip);
+        // limit actress on page
+        data = data.filter((actress, index) => index < (perPage));
+        res.render('actress', {
+            numberOfActress,
+            data,
+            alphabet,
+            current : page,
+            pages: totalPages,
+            char:""
+        });
+    })
+
     // [GET] /JavStar/Actress || /JavStar/Actress/?char&?page
     app.get("/JavStar/Actress", async (req, res) => {
         let page = req.query.page || 1;
@@ -51,8 +81,6 @@ function Router(app) {
             pages: totalPages,
             char
         });
-        // 1  2  3  4  5
-        // 12 12 12 12 12
     })
 
     // [GET] /JavStar
@@ -67,7 +95,10 @@ function Router(app) {
         res.render("home", { result });
     })
 
-
+    // [GET] /
+    app.get("/" ,(req, res) =>{
+        res.redirect("/JavStar");
+    })
 
 }
 

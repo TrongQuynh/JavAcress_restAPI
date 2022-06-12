@@ -21,7 +21,7 @@ let crawlAllData = async function (firstChar) {
                 image = image.substring(0, index);
 
                 // check if not have name in Alphabet list
-                if(name[0] != firstChar){
+                if (name[0] != firstChar) {
                     return;
                 }
 
@@ -30,10 +30,10 @@ let crawlAllData = async function (firstChar) {
                     id: ID,
                     firstChar: firstChar,
                     name: name,
-                    url: `JavStar/Actress/Detail${url.split('/wiki')[1]}`,
+                    url: `/JavStar/Actress/Detail${url.split('/wiki')[1]}`,
                     image: image
                 });
-                
+
             })
             nameList = nameList.concat(result);
         })
@@ -49,19 +49,24 @@ let crawlAllData = async function (firstChar) {
 async function crawlAllJavStar(firstChar) {
     nameList = new Array;
     let alphabet = firstChar
-    if(!alphabet){
+    if (!alphabet) {
         alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
-        "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+            "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
     }
 
     for (let char of alphabet) {
-        console.log("char: ",char);
+        console.log("char: ", char);
         await crawlAllData(char);
     }
     return nameList;
 }
 
+async function findActress(searchText) {
+    crawlAllJavStar('');
+    return nameList.filter((actress, index) => (actress.name).toLowerCase().includes((searchText.toLowerCase())));
+}
 
 module.exports = {
-    crawlAllJavStar
+    crawlAllJavStar,
+    findActress
 }

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/w3.css">
+    <title><%= album.titlePage %></title>
+    <style>
+
+        .pageTitle {
+            font-family: 'Roboto Slab', serif;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .infoIcon {
+            padding-top: 20px;
+            font-size: 80px;
+            float: left;
+        }
+
+        .btn-download {
+            margin: 0 70px;
+        }
+
+        .box-download {
+            margin: 10px 0px;
+        }
+
+        img {
+            margin: 5px auto;
+        }
+
+        body {
+            background-color: black;
+        }
+
+        .box-tag > span > i {
+            padding: 0 8px;
+        }
+
+        .w3-image {
+            margin-top: 0px;
+        }
+
+        .w3-col.l4 > h4 {
+            font-size: 14px;
+            line-height: 20px;
+            color: #e74c3c;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .page-link{
+            margin: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <%- include ('tiles/navbar') %>
+
+        <!-- Start Content page -->
+        <div style="margin:2px 200px 0;background-color: white;">
+            <img src="/images/wallpaper1.jpg" class="w3-image" alt="">
+            <div class="w3-container">
+                <div style="box-shadow: 0 0 3px #cacaca; padding: 15px;margin-bottom: 20px;">
+                    <h1><span class="pageTitle"><%= album.titlePage %> </span></h1>
+
+                    <!-- Tags -->
+                    <p class="box-tag" style="border-bottom: 1px solid lightgrey;padding-bottom: 10px;">
+                        <span style="margin-right: 10px;"><i class="fa fa-eye" aria-hidden="true"></i>
+                            <%= album.numberOfViews %>
+                        </span>
+                        <span><i class="fa fa-comments" aria-hidden="true"> 0 bình luận</i></span>
+                    </p>
+
+                    <!-- Pagination Top -->
+                    <div class="page-link w3-light-grey" style="padding:10px;">
+                        <span style="margin-right: 8px;">The next page: </span>
+                        <% for(let page=1; page <=album.totalPage; page++){ %>
+                            <% if(page==Number(currentPage)){ %>
+                                <a href="/Heaven/Xiuren/<%= albumName %>/<%= page %>"
+                                    class="w3-button w3-red w3-hover-dark-grey">
+                                    <%= page %>
+                                </a>
+                                <% }else{ %>
+                                    <a href="/Heaven/Xiuren/<%= albumName %>/<%= page %>"
+                                        class="w3-button w3-grey w3-hover-red">
+                                        <%= page %>
+                                    </a>
+                                    <% } %>
+                                        <% } %>
+                    </div>
+
+                    <!-- Info Album -->
+                    <div class="box-info" style="margin: 20px 0;padding: 20px;background-color: aquamarine;">
+                        <i class="fa fa-info-circle infoIcon" aria-hidden="true"></i>
+                        <p style="margin-left: 20px;padding-left: 70px;font-size: 18px;">
+                            Thông tin bộ ảnh này:
+                            <br>
+                            Tên bộ ảnh: XIUREN No.4728
+                            <br>
+                            Người mẫu: Zhou Yuxi (周于希Sally)
+                            <br>
+                            Tổng số ảnh: 76 ảnh + 1 cover
+                            <br>
+                            Dung lượng: 787MB
+                            <br>
+                            Kích cỡ ảnh: 3600×5400
+                        </p>
+                    </div>
+
+                    <!-- Download Section -->
+                    <div class="box-download w3-center">
+                        <% if(currentPage < 2) {%>
+                            <a href="<%= album.linkDownloadMediaFire %>" target="_blank"
+                                class="w3-btn w3-light-green w3-padding btn-download">
+                                <i class="fa fa-download" aria-hidden="true"></i>
+                                <span style="margin-left: 10px;">Download link: MediaFire</span>
+                            </a>
+
+                            <a href="<%= album.linkDownloadAnonFiles %>" target="_blank"
+                                class="w3-btn w3-blue-grey w3-padding btn-download">
+                                <i class="fa fa-download" aria-hidden="true"></i>
+                                <span style="margin-left: 10px;">Download link: AnonFiles</span>
+                            </a>
+                            <% } %>
+                    </div>
+
+                    <!-- Image Section -->
+                    <div class="w3-margin-top w3-center">
+                        <% for(let photo of album.listPhoto){ %>
+                            <img src="<%= photo %> " alt="">
+                            <% } %>
+                    </div>
+
+                    <!-- Pagination Bottom -->
+                    <div class="page-link w3-light-grey" style="padding:10px;">
+                        <span style="margin-right: 8px;">The next page: </span>
+                        <% for(let page=1; page <=album.totalPage; page++){ %>
+                            <% if(page==Number(currentPage)){ %>
+                                <a href="/Heaven/Xiuren/<%= albumName %>/<%= page %>"
+                                    class="w3-button w3-red w3-hover-dark-grey">
+                                    <%= page %>
+                                </a>
+                                <% }else{ %>
+                                    <a href="/Heaven/Xiuren/<%= albumName %>/<%= page %>"
+                                        class="w3-button w3-grey w3-hover-red">
+                                        <%= page %>
+                                    </a>
+                                    <% } %>
+                                        <% } %>
+                    </div>
+
+                    <!-- Tag Section -->
+                    <div class="box-tag w3-margin-top" style="margin: 5px 0;">
+                        <% for(let tag of album.tagList){ %> 
+                            <span class="w3-hover-text-red">
+                                <i class="fa fa-tag" aria-hidden="true"></i>
+                                <a href="<%= tag.linkTag %>"><%= tag.nameTag %></a>
+                            </span>
+                        <% } %> 
+                    </div>
+
+                    <!-- Recomend Album Section -->
+                    <h2 style="font-weight: bold;">Recomend</h2>
+
+                    <div class="w3-row">
+                        <% for(let reAlbum of album.recommendAlbumList){ %>
+                            <div class="w3-col l4">
+                                <a href="<%= reAlbum.linkToAlbum %>">
+                                    <img src="<%= reAlbum.thumbnail %> " alt="" width="350" height="200">
+                                </a>
+                                <h4>
+                                    <a href="<%= reAlbum.linkToAlbum %>">
+                                        <span style="font-weight: bold;" class="w3-hover-text-grey"><%= reAlbum.albumName %></span>
+                                    </a>
+                                </h4>
+                            </div>
+                            <% } %>
+                    </div>
+
+                    <!-- End Recommend Section -->
+                </div>
+            </div>
+        </div>
+        <!-- END Content page -->
+
+        <%- include ('tiles/footer') %>
+</body>
+
+</html>

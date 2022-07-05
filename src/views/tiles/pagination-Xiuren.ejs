@@ -1,0 +1,44 @@
+<div class="w3-bar w3-center w3-margin-bottom">
+    <!-- if have Model Photo -->
+    <% if(totalPage > 0) {%>
+        <!-- Fisrt Button -->
+        <% if(currentPage == 1){ %>
+            <a href="#" class="w3-button w3-disabled">&laquo;</a>
+        <%}else{%>
+            <a href="#" class="w3-button">&laquo;</a>
+        <% } %>
+        
+         
+        <% let i= Number(currentPage) > 3 ? Number(currentPage) - 2 : 1 %> 
+        <% if(i != 1) {%>
+            <a href="#" class="w3-button w3-disabled">...</a>
+        <% } %>  
+        <% for(;i<=Number(currentPage) + 2 && i <= totalPage;i++){ %> 
+            <% let link = "" %> 
+            <% if(isGetTop){ %> 
+                <% link = `/Heaven/Xiuren/top/${top}`%>
+            <% }else{ %> 
+                <% link = i < 2 ? `/Heaven/Xiuren/tag/${tagname}` : `/Heaven/Xiuren/tag/${tagname}/page/` %>
+            <% } %> 
+
+            <% if(i == currentPage && currentPage < 2) {%> 
+                <a href="<%= link %>" class="w3-button w3-red"><%= currentPage %> </a>
+            <% }else if(i == currentPage){%> 
+                <a href="<%= link %><%= i %>" class="w3-button w3-red"><%= currentPage %> </a>
+            <% }else{ %> 
+                <a href="<%= link %><%= i %>" class="w3-button"><%= i %> </a>        
+            <% } %> 
+
+            <% if((i == Number(currentPage) + 2) && i < totalPage){ %> 
+                <a href="#" class="w3-button w3-disabled">...</a>
+            <% } %> 
+        <% } %> 
+
+        <!-- Last Button -->
+        <% if(currentPage==totalPage){ %>
+            <a href="#" class="w3-button w3-disabled">&raquo;</a>
+        <%}else{%>
+            <a href="#" class="w3-button">&raquo;</a>
+        <% } %>
+    <% } %>
+</div>

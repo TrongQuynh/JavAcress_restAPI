@@ -1,12 +1,23 @@
-<div class="w3-container w3-blue w3-top w3-card w3-padding-16">
+<div class="w3-container w3-blue w3-card w3-padding-16 navbar">
     <div class="w3-bar">
-        <a href="/JavStar" class="w3-bar-item w3-button w3-hover-blue">JavStar</a>
+        <a href="/Heaven" class="w3-bar-item w3-button w3-hover-blue">Heaven</a>
         <div class="w3-right w3-hide-small">
-            <a href="#" class="w3-button w3-bar-item">Home</a>
-            <a href="#" class="w3-button w3-bar-item">Top Week</a>
-            <a href="#" class="w3-button w3-bar-item">Top Month</a>
-            <a href="#" class="w3-button w3-bar-item">About Us</a>
-            <a href="#" class="w3-button w3-bar-item">Contact</a>
+            <a href="/Heaven" class="w3-button w3-bar-item">Home</a>
+            <div class="w3-dropdown-hover">
+                <button class="w3-button">
+                    Photo category
+                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                </button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4 w3-row" style="max-width: 600px;">
+                   <% for(let tag of subMenu){ %> 
+                    <a href="<%= tag.link %>" class="w3-button w3-col l6" style="width: 200px;font-size: 13px;"><%= tag.tagName %></a>
+                   <% } %> 
+                  </div>
+            </div>
+            <a href="/Heaven/Xiuren/top/top3/" class="w3-button w3-bar-item">Top 3 Days</a>
+            <a href="/Heaven/Xiuren/top/top7/" class="w3-button w3-bar-item">Top 7 Days</a>
+            <a href="/Heaven/Xiuren/top/top30/" class="w3-button w3-bar-item">Top 30 Days</a>
+            <a href="/Heaven/Xiuren/tag/xiuren" class="w3-button w3-bar-item">Xiuren</a>
             <a href="#" class="w3-button w3-bar-item" style="margin: 0 25px;"><i class="fa fa-search"></i></a>
         </div>
     </div>

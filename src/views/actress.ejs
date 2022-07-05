@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/w3.css">
     <link rel="stylesheet" href="/loading.css">
+    <style>
+        
+    </style>
 </head>
 
 <body>
@@ -22,7 +25,7 @@
 
         <!-- Search Section -->
         <div class="w3-content w3-row" style="margin: 30px auto;">
-            <form action="/JavStar/Actress/Search" method="get">
+            <form action="/Heaven/Actress/Search" method="get">
                 <input type="text" name="query" class="w3-input w3-col m11" placeholder="Search">
                 <button type="submit" class="w3-button w3-col m1 w3-border w3-hover-blue">
                     <i class="fa fa-search"></i>
@@ -34,7 +37,7 @@
         <div class="w3-content w3-center">
             <div class="w3-bar">
                 <% for(let char of alphabet) {%>
-                    <a href="/JavStar/Actress?char=<%= char %>" class="w3-bar-item" style="padding: 0 10px;">
+                    <a href="/Heaven/Actress?char=<%= char %>" class="w3-bar-item" style="padding: 0 10px;">
                         <%= char %>
                     </a>
                     <% } %>

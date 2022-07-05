@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %> - Haven</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/w3.css">
+    <style>
+
+        a {
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: crimson;
+        }
+
+        .albumName {
+            font-size: 20px;
+            line-height: 26px;
+            font-weight: 700;
+
+        }
+
+        .page-title {
+            margin-top: 30px;
+            font-weight: bold;
+        }
+
+        .box-img{
+            width: 600px;
+            height: 315px;
+        }
+
+        .image-model:hover {
+            -webkit-transition: all 2s ease;
+            -moz-transition: all 2s ease;
+            -ms-transition: all 2s ease;
+            transition: all 2s ease;
+            width: 585px;
+            height: 300px;
+        }
+
+        .main-section{
+            border-bottom: 2px solid red;
+            box-shadow: 0 0 3px #cacaca;
+            margin-bottom: 40px;
+            max-width: 650px;
+            margin-right: 30px;
+        }
+
+        .hot-section{
+            height: 100vh;
+            margin-bottom: 200px;
+            max-width: 400px;
+        }
+
+        .hot-img{
+            width: 100%;
+            height: 100%;
+        }
+
+        img:hover{
+            filter: brightness(50%);
+        }
+
+        .just-ported-img{
+            width: 100px;
+            height: 70px;
+        }
+
+        .stripe-line{
+            display: inline-block;
+            color: white;
+            background: repeating-linear-gradient(
+                45deg,
+                #ffffff,
+                #ffffff 10px,
+                #494b59 10px,
+                #494b59 20px
+            );
+            width: 80%;
+            margin-left: 10px;
+            min-height: 20px
+        }
+
+       .albumName-just-ported {
+            font-size: 13px;
+            margin-left: 4px;
+            max-width: 60%;
+            display: inline-block;
+        }
+
+    </style>
+</head>
+
+<body style="background-color: black;">
+    <%- include ('tiles/navbar') %>
+
+        <div style="margin:0 200px;border: 2px solid blue;background-color: aliceblue;">
+            <img src="/images/wallpaper3.jpg" class="w3-image w3-card-2" alt="" width="1076px" height="390px"
+                style="max-height: 390px;">
+            <div class="w3-container w3-row" style="width: 100%;">
+                <!-- Page Title and Page Descript START -->
+                <h2 class="w3-panel w3-leftbar w3-border-blue page-title" style="margin-top: 10px;">
+                    <%= pageTitle %>
+                </h2>
+                <% if(pageDescript=="" ){ %>
+                    <p>Xem và download các bộ ảnh <%= pageTitle %> (秀人网) với chất lượng rất cao hoàn toàn miễn phí!
+                            Bạn sẽ được ngắm nhìn rất nhiều ảnh chụp nóng bỏng và quyến rũ của những người mẫu Trung
+                            Quốc
+                            qua ống kính máy ảnh của các nhiếp ảnh gia chuyên nghiệp!</p>
+                <% }else{ %>
+                    <p>
+                        <%= pageDescript %>
+                    </p>
+                <% } %>
+                <!-- Page Title and Page Descript END -->
+
+                <div class="w3-col m4 l8 main-section">
+                    <span>
+                        <% for(let model of data){ %>
+                            <!-- Item List Start -->
+                            <div style="border-bottom: 1px solid #D8D8D8; padding: 20px 20px 25px;">
+                                <div class="box-img w3-center">
+                                    <a href="/Heaven/Xiuren/<%= model.albumName %>">
+                                        <img src="<%= model.thumbnail %> " alt="<%= model.title %>"
+                                            class="image-model">
+                                    </a>
+                                </div>
+                                <!-- Title secction -->
+                                <h2 class="w3-text-deep-orange albumName">
+                                    <a href="/Heaven/Xiuren/<%= model.albumName %>">
+                                        <%= model.title %>
+                                    </a>
+                                </h2>
+                                <!-- Tag Secction -->
+                                <p>
+                                    <span style="margin-right: 8px;">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                        <%= model.view %>
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-tags" aria-hidden="true"></i>
+                                        <% for(let i=0;i < model.tags.length; i++){ %>
+                                            <% let link=model.tags[i].replaceAll(" ", "-"); %>
+                                            <a href="/Heaven/Xiuren/tag/<%= link %>">
+                                                <%= model.tags[i] %>
+                                            </a>
+                                            <% if(i+1 !=model.tags.length){ %>
+                                                ,
+                                            <% } %>
+                                        <% } %>
+                                    </span>
+                                </p>
+                            </div>
+                            <!-- Item List End -->
+                        <% } %>
+                    </span>
+                </div>
+
+                <!-- Sidebar Section -->
+                <div class="w3-col m8 l4 hot-section">
+                    <!-- HOT Section -->
+                    <% if(!isGetTop){ %> 
+                        <div>
+                            <h2 style="font-weight: bold;display: inline-block;">Hot</h2>
+                            <div class="stripe-line w3-card"></div>
+                            <div style="box-shadow: 0 0 3px #cacaca;">
+                                <div style="padding: 10px;overflow: hidden;">  
+                                    <% for(let album of hotAlbum){ %> 
+                                        <div style="width: 153px; height: 153px; margin: 3px;display: inline-block;max-width: 160px; max-height: 160px;">
+                                            <a href="<%= album.link %> ">
+                                                <img src="<%= album.hotThumbnail %> " alt="<%= album.title %>"
+                                                class="hot-img" title="<%= album.title %>">
+                                            </a>
+                                            
+                                        </div>
+                                    <% } %> 
+                                </div>
+                            </div>
+                        </div>
+                    <% } %> 
+                    <!-- HOT Section END-->
+
+                    <!-- Just Ported Section -->
+                    <% if(isGetTop){ %>
+                        <div style="width: 100%;">
+                            <h2 style="font-weight: bold;display: inline-block;">Just Ported</h2>
+                            <div class="stripe-line w3-card"></div>
+                            <div style="box-shadow: 0 0 3px #cacaca;">
+                                <div style="padding: 10px;">  
+                                    <% for(let album of albumJustPorted){ %> 
+                                        <div>
+                                            <a href="<%= album.albumLink %> ">
+                                                <img src="<%= album.thumbnail %>" alt="<%= album.albumName %>"
+                                                class="just-ported-img" title="<%= album.albumName %>">
+                                            </a>
+                                            <a href="<%= album.albumLink %> ">
+                                                <p class="albumName-just-ported"><%= album.albumName %></p>
+                                            </a>
+                                        </div>
+                                    <% } %> 
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+                <!-- End Sidebar Section -->
+            </div>
+            <!-- Paging -->
+            <%- include ('tiles/pagination-Xiuren') %>
+        </div>
+
+        <%- include ('tiles/footer') %>
+</body>
+
+</html>

@@ -55,7 +55,6 @@ async function crawlAllJavStar(firstChar) {
     }
 
     for (let char of alphabet) {
-        console.log("char: ", char);
         await crawlAllData(char);
     }
     return nameList;

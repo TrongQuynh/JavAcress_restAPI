@@ -28,11 +28,11 @@ let crawlData = async function (url, isCrawlTopAlbum) {
                     let tagName = $(this).find('a').text();
                     subMenu.push({ link, tagName });
                 })
-
+                console.table(subMenu);
 
                 if (isCrawlTopAlbum) {
                     // Crawl Album Just Ported
-                    $("#posts-list-widget-4> .widget-container > ul > li").each(function () {
+                    $("#posts-list-widget-4 > .widget-container > ul > li").each(function () {
                         let thumbnail = $(this).find(".post-thumbnail > a > img").attr("src");
                         let albumLink = $(this).find(".post-thumbnail > a").attr("href").replaceAll("https://mrcong.com/","http://localhost:8000/Heaven/Xiuren/");
                         let albumName = $(this).find("h3 > a").text();

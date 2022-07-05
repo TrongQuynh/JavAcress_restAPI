@@ -49,7 +49,7 @@ let crawlInfoActress = async function (name) {
                 infoActress[typeData] = info;
             })
             infoActress.Social_Media = accountList;
-            console.log(infoActress);
+            
         })
         return infoActress;
         

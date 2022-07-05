@@ -8,7 +8,6 @@ let subMenu = [];
 
 let crawlData = async function (albumName, currentPage) {
     let fullUrl = currentPage < 2 ? `https://mrcong.com/${albumName}` : `https://mrcong.com/${albumName}/${currentPage}`;
-    console.log("URL: " + fullUrl);
     try {
         await axios(fullUrl)
             .then(async(res) => {
@@ -72,8 +71,6 @@ let crawlData = async function (albumName, currentPage) {
                     tagList,
                     subMenu
                 }
-
-                console.log(album);
 
             })
             .catch((err) => {

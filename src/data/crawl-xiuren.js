@@ -24,17 +24,19 @@ let crawlData = async function (url, isCrawlTopAlbum) {
 
                 // crawl sub menu
                 $("ul.sub-menu.menu-sub-content > li.menu-item").each(function () {
-                    let link = $(this).find('a').attr("href").replaceAll("https://mrcong.com/", "http://localhost:8000/Heaven/Xiuren/");
+                    let link = $(this).find('a').attr("href").replaceAll("https://mrcong.com/", "/Heaven/Xiuren/");
                     let tagName = $(this).find('a').text();
                     subMenu.push({ link, tagName });
                 })
+
+                console.log("\n--- Sub Menu ---");
                 console.table(subMenu);
 
                 if (isCrawlTopAlbum) {
                     // Crawl Album Just Ported
                     $("#posts-list-widget-4 > .widget-container > ul > li").each(function () {
                         let thumbnail = $(this).find(".post-thumbnail > a > img").attr("src");
-                        let albumLink = $(this).find(".post-thumbnail > a").attr("href").replaceAll("https://mrcong.com/","http://localhost:8000/Heaven/Xiuren/");
+                        let albumLink = $(this).find(".post-thumbnail > a").attr("href").replaceAll("https://mrcong.com/","/Heaven/Xiuren/");
                         let albumName = $(this).find("h3 > a").text();
                         albumJustPorted.push({
                             thumbnail,
@@ -48,11 +50,14 @@ let crawlData = async function (url, isCrawlTopAlbum) {
                     // crawl HOT section
                     $(".widget-grid-view-image").each(function () {
                         let hotThumbnail = $(this).find("a > img").attr("src");
-                        let link = $(this).find('a').attr("href").replaceAll("https://mrcong.com/", "http://localhost:8000/Heaven/Xiuren/");
+                        let link = $(this).find('a').attr("href").replaceAll("https://mrcong.com/", "/Heaven/Xiuren/");
                         let title = $(this).find('a').attr("title");
                         hotAlbum.push({ hotThumbnail, link, title });
                     })
                 }
+
+                console.log("\n--- Hot Album ---");
+                console.table(hotAlbum);
 
                 // Get Model List
                 $("article.item-list").each(function (index, el) {
@@ -74,10 +79,9 @@ let crawlData = async function (url, isCrawlTopAlbum) {
                         albumName
                     };
                     result.push(photoModel);
-                    // console.log(photoModel);
-
                 })
-
+                console.log("\n--- Photo Model ---");
+                console.table(result);
                 // Crawl total Page
 
                 let lastPage = $(".pagination > a:last").text();

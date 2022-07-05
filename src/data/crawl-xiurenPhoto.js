@@ -16,7 +16,7 @@ let crawlData = async function (albumName, currentPage) {
 
                 // crawl sub menu
                 $("ul.sub-menu.menu-sub-content > li.menu-item").each(function(){
-                    let link = $(this).find('a').attr("href").replaceAll("https://mrcong.com/","http://localhost:8000/JavStar/Xiuren/");
+                    let link = $(this).find('a').attr("href").replaceAll("https://mrcong.com/","/Heaven/Xiuren/");
                     let tagName = $(this).find('a').text();
                     subMenu.push({link,tagName});
                 })

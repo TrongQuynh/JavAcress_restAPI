@@ -12,10 +12,13 @@ let crawlXiurenMenu = async function () {
                 const html = res.data;
                 const $ = cheerio.load(html);
                 $("ul.sub-menu.menu-sub-content > li.menu-item").each(function(index, el){
-                    let link = $(this).find('a').attr("href").replaceAll("https://mrcong.com/", "http://localhost:8000/Heaven/Xiuren/");
+                    let link = $(this).find('a').attr("href").replaceAll("https://mrcong.com/", "/Heaven/Xiuren/");
                     let tagName = $(this).find('a').text();
                     subMenu.push({tagName,link});
                 })
+
+                console.log("\n--- Sub Menu ---");
+                console.table(subMenu);
 
             })
             .catch((err) => {

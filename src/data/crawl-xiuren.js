@@ -11,7 +11,6 @@ let hotAlbum = [];
 let albumJustPorted = [];
 
 let crawlData = async function (url, isCrawlTopAlbum) {
-    console.log("URL: " + url);
     try {
         await axios(url)
             .then((res) => {
@@ -28,9 +27,6 @@ let crawlData = async function (url, isCrawlTopAlbum) {
                     let tagName = $(this).find('a').text();
                     subMenu.push({ link, tagName });
                 })
-
-                console.log("\n--- Sub Menu ---");
-                console.table(subMenu);
 
                 if (isCrawlTopAlbum) {
                     // Crawl Album Just Ported
@@ -56,9 +52,6 @@ let crawlData = async function (url, isCrawlTopAlbum) {
                     })
                 }
 
-                console.log("\n--- Hot Album ---");
-                console.table(hotAlbum);
-
                 // Get Model List
                 $("article.item-list").each(function (index, el) {
                     let title = $(this).find("h2 > a").text();
@@ -80,10 +73,8 @@ let crawlData = async function (url, isCrawlTopAlbum) {
                     };
                     result.push(photoModel);
                 })
-                console.log("\n--- Photo Model ---");
-                console.table(result);
-                // Crawl total Page
 
+                // Crawl total Page
                 let lastPage = $(".pagination > a:last").text();
                 if (Number(lastPage) > totalPage) {
                     totalPage = Number(lastPage);

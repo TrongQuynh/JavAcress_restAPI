@@ -1,16 +1,29 @@
-let a = {
-    titleName: 'Chika Arimura',
-    img: 'https://static.wikia.nocookie.net/jav/images/a/a1/Chika_Arimura.jpg',
-    'Personal Information': {
-      Name: 'Chika Arimura(有村千佳)',
-      Born: 'April 15, 1990 (age 32)',
-      Birthplace: 'Tokyo, Japan',
-      'Zodiac Sign': ' Aries',
-      'Blood Type': 'O',
-      Heght: '158cm',
-      'B-W-H': '85(C Cup)-58-88cm'
-    },
-    'Professional Information': { 'Years Active ': '2010-2015' },
-    'Social Media': { Twitter: 'chika_arimura' }
-  }
+let calculatorValue = "1 + 2 * 3 - 4 * 2 / 2 + 1"
+let strArr = calculatorValue.split(" ").filter((n) => n !== "");
+let operatorArr = strArr.filter((n) =>
+  ["*", "/", "-", "+", "%"].includes(n)
+);
+let numberArray = strArr.filter((n) => !operatorArr.includes(n));
 
+// console.log(operatorArr);
+// console.log(numberArray);
+
+while (operatorArr.length) {
+  let tmp = 0;
+  let currentIndex = 0;
+  if (operatorArr.includes("*") || operatorArr.includes("/")) {
+    currentIndex = operatorArr.indexOf("*") > -1 ? operatorArr.indexOf("*") : operatorArr.indexOf("/");
+    tmp = operatorArr.includes("*") ? Number(numberArray[currentIndex]) * Number(numberArray[currentIndex + 1]) : Number(numberArray[currentIndex]) / Number(numberArray[currentIndex + 1]);
+  } else {
+    if (operatorArr[currentIndex] === '+') {
+      tmp = Number(numberArray[0]) + Number(numberArray[1]);
+    } else {
+      tmp = Number(numberArray[0]) - Number(numberArray[1]);
+    }
+  }
+  numberArray[currentIndex] = tmp;
+  numberArray.splice(currentIndex + 1, 1);
+  operatorArr.splice(currentIndex, 1);
+}
+
+console.log(numberArray[0]);

@@ -4,7 +4,7 @@ const router = require('./routers/index')
 const path = require('path');
 const app = express();
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8080;
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -15,5 +15,5 @@ app.use(express.static(path.join(__dirname, "public")));
 router(app)
 
 app.listen(PORT, () => {
-    console.log("Server Run Susscessful!");
+    console.log(`Server Run Susscessful! at: http://localhost:${PORT}`);
 })
